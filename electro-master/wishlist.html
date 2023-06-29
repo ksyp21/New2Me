@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Slider</title>
+  <style>
+    .slider-container {
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out auto;
+    }
+    
+    .slide {
+      flex: 0 0 100%;
+    }
+    
+    .slide img {
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Optional: Add styling for navigation buttons */
+    .slider-nav {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .slider-nav button {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide">
+        <img src="./img/hotdeal.png" alt="Image 1">
+      </div>
+      <div class="slide">
+        <img src="./img/product01.png" alt="Image 2">
+      </div>
+      <div class="slide">
+        <img src="./img/product03.png" alt="Image 3">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Optional: Add navigation buttons -->
+  <div class="slider-nav">
+    <button onclick="prevSlide()">Prev</button>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <script>
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    
+    // Function to display the current slide
+    function showSlide() {
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+    
+    // Function to go to the previous slide
+    function prevSlide() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = slides.length - 1;
+      }
+      showSlide();
+    }
+    
+    // Function to go to the next slide
+    function nextSlide() {
+      currentIndex++;
+      if (currentIndex >= slides.length) {
+        currentIndex = 0;
+      }
+      showSlide();
+    }
+      // Automatic sliding every 3 seconds
+      setInterval(nextSlide, 3000);
+  </script>
+</body>
+</html>
